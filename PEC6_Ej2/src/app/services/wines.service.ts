@@ -57,6 +57,9 @@ export class WinesService {
   }
 
   create(wine: Wine): Observable<Wine> {
+    wine.quantityInCart = 0;
+    wine.foodPairing = [];
+    wine.id = Math.max(...this.wines.map(w => w.id)) + 1;
     this.wines.push(wine);
     return of(wine);
   }

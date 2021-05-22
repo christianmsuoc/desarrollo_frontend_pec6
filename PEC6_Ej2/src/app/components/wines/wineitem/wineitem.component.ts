@@ -31,6 +31,7 @@ import {WineQuantityChange} from '../../../models/wine-quantity-change';
         padding: 40px;
         width: 100px;
         display: grid;
+        height: 500px;
         grid-template-rows: auto auto auto auto;
         justify-items: center;
         font-size: large;
