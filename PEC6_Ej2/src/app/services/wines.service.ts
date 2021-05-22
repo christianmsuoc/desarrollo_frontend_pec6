@@ -1,14 +1,13 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {Wine} from '../models/wine';
-import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WinesService {
 
-  wines =  [
+  wines = [
     {
       id: 1,
       name: 'Pesquera Reserva 2016',
@@ -51,22 +50,16 @@ export class WinesService {
   }
 
   changeQuantity(wineId: number, changeInQuantity: number): Observable<Wine> {
-    return this.getWines().pipe(
-      map(wines => {
-        // tslint:disable-next-line:no-non-null-assertion
-        const wine = wines.find(w => w.id === wineId)!!;
-        wine.quantityInCart = changeInQuantity;
-        return wine;
-      })
-    );
+    // tslint:disable-next-line:no-non-null-assertion
+    const wine = this.wines.find(w => w.id === wineId)!!;
+    wine.quantityInCart = changeInQuantity;
+    return of(wine);
   }
 
   create(wine: Wine): Observable<Wine> {
-    return this.getWines().pipe(
-      map(wines => {
-        wines.push(wine);
-        return wine;
-      })
-    );
+    this.wines.push(wine);
+    return of(wine);
   }
+
+
 }
