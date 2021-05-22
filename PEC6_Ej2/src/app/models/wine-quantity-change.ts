@@ -1,6 +1,6 @@
-import {Wine} from "./wine";
+import {Wine} from './wine';
 
-export interface WineQuantityChange {
+export interface  WineQuantityChange {
   wine: Wine;
   units: number;
 }

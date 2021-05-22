@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
-import {Wine} from "../../../models/wine";
-import {WineQuantityChange} from "../../../models/wine-quantity-change";
+import {Wine} from '../../../models/wine';
+import {WineQuantityChange} from '../../../models/wine-quantity-change';
 
 @Component({
   selector: 'app-wineitem',
@@ -29,10 +29,15 @@ import {WineQuantityChange} from "../../../models/wine-quantity-change";
         grid-area: wine;
         border: solid black 1px;
         padding: 40px;
+        width: 100px;
         display: grid;
         grid-template-rows: auto auto auto auto;
         justify-items: center;
-        font-size: x-large;
+        font-size: large;
+      }
+
+      .wine img {
+        width: 100%;
       }
 
       .unit-selector {
@@ -41,17 +46,16 @@ import {WineQuantityChange} from "../../../models/wine-quantity-change";
         grid-template: 'button-remove quantity button-add';
         grid-gap: 10px;
         align-items: center;
+      }
 
-        button {
-          height: 30px;
-          width: 40px;
-          background-color: white;
-          border-radius: 5px;
-          border: none;
-          font-size: large;
-          cursor: pointer;
-        }
-
+      .unit-selector  button {
+        height: 30px;
+        width: 40px;
+        background-color: white;
+        border-radius: 5px;
+        border: none;
+        font-size: large;
+        cursor: pointer;
       }
 
       .available {
@@ -66,16 +70,16 @@ import {WineQuantityChange} from "../../../models/wine-quantity-change";
 })
 export class WineitemComponent {
 
-  @Input() wine?: Wine;
+  @Input() wine: Wine  = {} as Wine;
   @Output() changeQuantity = new EventEmitter<WineQuantityChange>();
 
 
-  addUnit() {
-    this.changeQuantity.emit({wine: this.wine!!, units: this.wine!.quantityInCart + 1});
+  addUnit(): void {
+    this.changeQuantity.emit({wine: this.wine, units: this.wine.quantityInCart + 1});
   }
 
-  removeUnit() {
-    this.changeQuantity.emit({wine: this.wine!!, units: this.wine!.quantityInCart - 1});
+  removeUnit(): void {
+    this.changeQuantity.emit({wine: this.wine, units: this.wine.quantityInCart - 1});
   }
 
   get moreThan0Units(): boolean {

@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {WineValidators} from "./wine-validators";
+import {WineValidators} from './wine-validators';
+import {WinesService} from '../../../services/wines.service';
 
 @Component({
   selector: 'app-wine-new',
@@ -21,10 +22,10 @@ export class WineNewComponent {
     isOnSale: [false],
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private wineService: WinesService) {}
 
   createWine(wineForm: FormGroup): void {
-    console.log(wineForm.value);
+    this.wineService.create(wineForm.value);
   }
 
   get name(): FormControl {
