@@ -1,0 +1,9 @@
+<div class="wine-container">
+  <app-wineitem
+    *ngFor="let wine of wines; trackBy: identifyWine"
+    [wine]="wine"
+    (changeQuantity)="changeQuantity($event)">
+  </app-wineitem>
+</div>
+<app-wine-new></app-wine-new>
+

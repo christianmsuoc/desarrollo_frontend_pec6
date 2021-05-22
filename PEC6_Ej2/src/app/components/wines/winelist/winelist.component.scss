@@ -1,0 +1,7 @@
+.wine-container {
+  display: grid;
+  border-radius: 20px;
+
+  grid-template: '. wine .';
+  justify-items: center;
+}
